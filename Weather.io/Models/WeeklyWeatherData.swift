@@ -13,7 +13,6 @@ struct WeeklyWeatherData: Decodable{
     let cnt: Int
     let list: [WWList]
 }
-
 struct WWList: Decodable{
     let dt: Int?
     let main: WWMain?
