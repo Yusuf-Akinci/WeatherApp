@@ -1,10 +1,3 @@
-//
-//  HomeVC.swift
-//  Weather.io
-//
-//  Created by Yusuf Akinci on 04.07.25.
-//
-
 import UIKit
 
 class HomeVC: UIViewController {
@@ -13,7 +6,6 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupTableView()
         fetchWeatherData()
     }
@@ -22,15 +14,15 @@ class HomeVC: UIViewController {
         tableView.delegate = self
     }
     private func fetchWeatherData(){
-        Api.shared.fetchLiveCurrentWeatherData { [weak self] weather in
-            guard let weather else { return }
-            print(weather)
-            DispatchQueue.main.async {
-                self?.currentWeather = weather
-                self?.tableView.reloadData()
-            }
-        }
-//
+//        Api.shared.fetchLiveCurrentWeatherData { [weak self] weather in
+//            guard let weather else { return }
+//            print(weather)
+//            DispatchQueue.main.async {
+//                self?.currentWeather = weather
+//                self?.tableView.reloadData()
+//            }
+//        }
+
         Api.shared.fetchSampleJson(CurrentWeatherData.self) { currentWeather in
             guard let currentWeather else {return}
             print("weather: \(currentWeather)")
