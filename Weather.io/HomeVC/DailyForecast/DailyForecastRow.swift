@@ -9,8 +9,9 @@ import UIKit
 
 class DailyForecastRow: UITableViewCell {
     static let id: String = "DailyForecastRow"
-
+    private var weatherData: WeeklyWeatherData?
     @IBOutlet private weak var collectionView: UICollectionView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,8 +26,10 @@ class DailyForecastRow: UITableViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
-    func configure(){
-        
+    func configure(_ weatherData: WeeklyWeatherData?){
+        guard let weatherData else {return}
+        self.weatherData = weatherData
+        collectionView.reloadData()
     }
 
 }
@@ -38,6 +41,9 @@ extension DailyForecastRow: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyForecastCell.id, for: indexPath) as! DailyForecastCell
+        if let item = weatherData?.list[indexPath.item] {
+            cell.configure(item)
+        }
         return cell
     }
 }

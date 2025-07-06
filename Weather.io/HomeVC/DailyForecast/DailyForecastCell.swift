@@ -13,7 +13,13 @@ class DailyForecastCell: UICollectionViewCell {
     @IBOutlet private weak var tempLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var statusImg: UIImageView!
-    func configure(){
+    func configure(_ item: WWList){
+        print(item.dt_txt ?? 0)
+        timeLabel.text = item.dt_txt
+        tempLabel.text = "\(item.main?.temp ?? 0)°"
         
     }
+//    private func transformFromUnixToDate(_ fullDate: String) -> String{
+//        
+//    }
 }

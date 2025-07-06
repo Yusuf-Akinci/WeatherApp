@@ -2,6 +2,7 @@ import UIKit
 
 class HomeVC: UIViewController {
     private var currentWeather: CurrentWeatherData?
+    private var weeklyWeather: WeeklyWeatherData?
     @IBOutlet private weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -23,13 +24,22 @@ class HomeVC: UIViewController {
 //            }
 //        }
 
-        Api.shared.fetchSampleJson(CurrentWeatherData.self) { currentWeather in
+        Api.shared.fetchSampleJson(CurrentWeatherData.self) { [weak self] currentWeather in
+            /* -> unwrapping self -> */
             guard let currentWeather else {return}
-            print("weather: \(currentWeather)")
+            DispatchQueue.main.async{
+                self?.currentWeather = currentWeather
+                self?.tableView.reloadData()
+            }
+            //print("weather: \(currentWeather)")
             
         }
-        Api.shared.fetchSampleJson(WeeklyWeatherData.self) { weeklyWeather in
+        Api.shared.fetchSampleJson(WeeklyWeatherData.self) { [weak self] weeklyWeather in
             guard let weeklyWeather else {return}
+            DispatchQueue.main.async{
+                self?.weeklyWeather = weeklyWeather
+                self?.tableView.reloadData()
+            }
             print("weeklyWeather: \(weeklyWeather)")
         }
     }
@@ -56,6 +66,7 @@ extension HomeVC: UITableViewDataSource{
         }
         else if(id == DailyForecastRow.id){
             let cell = tableView.dequeueReusableCell(withIdentifier: DailyForecastRow.id, for: indexPath) as! DailyForecastRow
+            cell.configure(weeklyWeather)
             return cell
         }
         else if (id == WeeklyForecastRow.id){
