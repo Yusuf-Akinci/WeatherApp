@@ -15,32 +15,39 @@ class HomeVC: UIViewController {
         tableView.delegate = self
     }
     private func fetchWeatherData(){
-//        Api.shared.fetchLiveCurrentWeatherData { [weak self] weather in
-//            guard let weather else { return }
-//            print(weather)
-//            DispatchQueue.main.async {
-//                self?.currentWeather = weather
-//                self?.tableView.reloadData()
-//            }
-//        }
-
-        Api.shared.fetchSampleJson(CurrentWeatherData.self) { [weak self] currentWeather in
-            /* -> unwrapping self -> */
-            guard let currentWeather else {return}
-            DispatchQueue.main.async{
-                self?.currentWeather = currentWeather
+        Api.shared.fetchLiveCurrentWeatherData { [weak self] weather in
+            guard let weather else { return }
+            print(weather)
+            DispatchQueue.main.async {
+                self?.currentWeather = weather
                 self?.tableView.reloadData()
             }
-            //print("weather: \(currentWeather)")
-            
         }
-        Api.shared.fetchSampleJson(WeeklyWeatherData.self) { [weak self] weeklyWeather in
+
+//        Api.shared.fetchSampleJson(CurrentWeatherData.self) { [weak self] currentWeather in
+//            /* -> unwrapping self -> */
+//            guard let currentWeather else {return}
+//            DispatchQueue.main.async{
+//                self?.currentWeather = currentWeather
+//                self?.tableView.reloadData()
+//            }
+//            //print("weather: \(currentWeather)")
+//            
+//        }
+//        Api.shared.fetchSampleJson(WeeklyWeatherData.self) { [weak self] weeklyWeather in
+//            guard let weeklyWeather else {return}
+//            DispatchQueue.main.async{
+//                self?.weeklyWeather = weeklyWeather
+//                self?.tableView.reloadData()
+//            }
+//            print("weeklyWeather: \(weeklyWeather)")
+//        }
+        Api.shared.fetchLiveWeeklyWeatherData{[weak self] weeklyWeather in
             guard let weeklyWeather else {return}
             DispatchQueue.main.async{
                 self?.weeklyWeather = weeklyWeather
                 self?.tableView.reloadData()
             }
-            print("weeklyWeather: \(weeklyWeather)")
         }
     }
 }

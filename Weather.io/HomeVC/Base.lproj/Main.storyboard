@@ -33,6 +33,7 @@
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="ddv-e8-Sue">
                                                     <rect key="frame" x="240" y="26" width="112" height="173"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <stackView contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="IkJ-kQ-a9U">
                                                     <rect key="frame" x="0.0" y="0.0" width="402" height="250"/>
@@ -130,8 +131,9 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="128"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-2A-17l">
-                                                                        <rect key="frame" x="15" y="41.666666666666657" width="45" height="45"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.min.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="8uo-2A-17l">
+                                                                        <rect key="frame" x="15" y="44.333333333333329" width="45" height="39.999999999999986"/>
+                                                                        <color key="tintColor" systemColor="systemOrangeColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="8uo-2A-17l" secondAttribute="height" multiplier="1:1" id="RLs-sL-IWo"/>
                                                                         </constraints>
@@ -218,6 +220,7 @@
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun" translatesAutoresizingMaskIntoConstraints="NO" id="9ks-mp-Vv0">
                                                                         <rect key="frame" x="58" y="13" width="24" height="24"/>
+                                                                        <color key="tintColor" systemColor="systemYellowColor"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="9ks-mp-Vv0" secondAttribute="height" multiplier="1:1" id="m10-UJ-V0b"/>
                                                                         </constraints>
@@ -236,6 +239,7 @@
                                                                     </label>
                                                                     <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="39" minValue="36" maxValue="42" translatesAutoresizingMaskIntoConstraints="NO" id="KFG-tY-8Po">
                                                                         <rect key="frame" x="120.33333333333333" y="10" width="191.33333333333337" height="31"/>
+                                                                        <color key="thumbTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </slider>
                                                                 </subviews>
                                                                 <constraints>
@@ -329,8 +333,15 @@
     <resources>
         <image name="light-cloudy-blue-sky-vertical-background-free-photo" width="1307" height="1960"/>
         <image name="sun" width="512" height="512"/>
+        <image name="sun.min.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

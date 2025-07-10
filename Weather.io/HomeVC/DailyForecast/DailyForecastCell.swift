@@ -14,11 +14,15 @@ class DailyForecastCell: UICollectionViewCell {
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var statusImg: UIImageView!
     func configure(_ item: WeeklyWeatherList){
-        guard let unwrappedText = item.dt_txt else { return }
         print(item.dt_txt ?? 0)
-        timeLabel.text = "\(item.dt_txt ?? "")"
+        timeLabel.text = item.dt?.toHour()
         tempLabel.text = "\(Int(item.main?.temp ?? 0))°"
-        
+        if let description = item.weather?.first?.main {
+            let weather = WeatherType(description)
+            statusImg.image = weather.icon
+        } else {
+            statusImg.image = nil
+        }
     }
 
 }

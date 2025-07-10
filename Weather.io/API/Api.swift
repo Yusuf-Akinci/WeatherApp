@@ -46,7 +46,7 @@ class Api{
     //Live JSON
     func fetchLiveCurrentWeatherData(completion: @escaping (CurrentWeatherData?) -> Void){
         //CREATING URL
-        let urlLink = "https://api.openweathermap.org/data/2.5/weather?lat=51.433334&lon=6.883333&appid=c18df1f3dd4cc48af1fdfbfd45fab5c2&units=metric"
+        let urlLink = "https://api.openweathermap.org/data/2.5/weather?lat=51.433334&lon=6.883333&appid=c18df1f3dd4cc48af1fdfbfd45fab5c2&units=metric&lang=tr"
         let url = URL(string: urlLink)!
         
         
@@ -58,6 +58,30 @@ class Api{
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode(CurrentWeatherData.self, from: data)
+                completion(decodedData)
+            } catch {
+                print(error)
+                completion(nil)
+            }
+        }
+        task.resume()
+        
+    }
+    
+    func fetchLiveWeeklyWeatherData(completion: @escaping (WeeklyWeatherData?) -> Void){
+        //CREATING URL
+        let urlLink = "https://api.openweathermap.org/data/2.5/forecast?lat=51.433334&lon=6.883333&appid=c18df1f3dd4cc48af1fdfbfd45fab5c2&units=metric&lang=tr"
+        let url = URL(string: urlLink)!
+        
+        
+        let task = URLSession.shared.dataTask(with: url){
+            data, response, error in guard error == nil, let data else {
+                completion(nil)
+                return
+            }
+            let decoder = JSONDecoder()
+            do {
+                let decodedData = try decoder.decode(WeeklyWeatherData.self, from: data)
                 completion(decodedData)
             } catch {
                 print(error)

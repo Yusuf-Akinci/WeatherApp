@@ -21,9 +21,16 @@ class WeeklyForecastCell: UITableViewCell {
     }
     func configure(dayData: DailyWeatherData){
         dayLabel.text = dayData.day
-        tempMinLabel.text = "\(dayData.lows.average())"
-        tempMaxLabel.text = "\(dayData.highs.average())"
+        tempMinLabel.text = "\(Int(dayData.lows.average()))"
+        tempMaxLabel.text = "\(Int(dayData.highs.average()))"
         setSlider(dayData: dayData)
+        
+        if let description = dayData.description{
+            let weather = WeatherType(description)
+            statusImg.image = weather.icon
+        } else {
+            statusImg.image = nil
+        }
     }
     private func setSlider(dayData: DailyWeatherData){
         let low = dayData.lows.average()

@@ -24,6 +24,15 @@ extension Int{
         let date = Date(timeIntervalSince1970: Double(self))
         return date.formatted(Date.FormatStyle().weekday(.abbreviated))
     }
+    
+    func toHour() -> String {
+        let formatter = DateFormatter()
+        formatter.setLocalizedDateFormatFromTemplate("h:mm")
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        let date = Date(timeIntervalSince1970: Double(self))
+        return formatter.string(from: date)
+    }
 }
 
 extension [WeeklyWeatherList] {

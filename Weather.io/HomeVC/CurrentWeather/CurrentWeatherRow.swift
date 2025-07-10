@@ -31,6 +31,11 @@ class CurrentWeatherRow: UITableViewCell {
         currentStatusLabel.text = weather.weather.first?.description
         lowestTempLabel.text = "Y: \(Int(weather.main.temp_min))°"
         highestTempLabel.text = "D: \(Int(weather.main.temp_max))°"
+        
+        if let description = weather.weather.first?.description {
+            let weather = WeatherType(description)
+            timeIcon.image = weather.icon
+        } else {timeIcon.image = nil}
     }
 
 }
