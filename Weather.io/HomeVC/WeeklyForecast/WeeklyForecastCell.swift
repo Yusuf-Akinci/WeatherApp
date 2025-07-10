@@ -19,8 +19,18 @@ class WeeklyForecastCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    func configure(){
-        
+    func configure(dayData: DailyWeatherData){
+        dayLabel.text = dayData.day
+        tempMinLabel.text = "\(dayData.lows.average())"
+        tempMaxLabel.text = "\(dayData.highs.average())"
+        setSlider(dayData: dayData)
+    }
+    private func setSlider(dayData: DailyWeatherData){
+        let low = dayData.lows.average()
+        let high = dayData.highs.average()
+        slider.minimumValue = Float(low)
+        slider.maximumValue = Float(high)
+        slider.value = Float(dayData.average)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

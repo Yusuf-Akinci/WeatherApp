@@ -11,9 +11,9 @@ struct WeeklyWeatherData: Decodable{
     let cod: String
     let message: Int
     let cnt: Int
-    let list: [WWList]
+    let list: [WeeklyWeatherList]
 }
-struct WWList: Decodable{
+struct WeeklyWeatherList: Decodable{
     let dt: Int?
     let main: WWMain?
     let weather: [WWWeather]?

@@ -9,7 +9,7 @@ import UIKit
 
 class DailyForecastRow: UITableViewCell {
     static let id: String = "DailyForecastRow"
-    private var weatherData: WeeklyWeatherData?
+    private var list: [WeeklyWeatherList] = []
     @IBOutlet private weak var collectionView: UICollectionView!
     
     
@@ -27,8 +27,8 @@ class DailyForecastRow: UITableViewCell {
         collectionView.delegate = self
     }
     func configure(_ weatherData: WeeklyWeatherData?){
-        guard let weatherData else {return}
-        self.weatherData = weatherData
+        guard let list = weatherData?.list else {return}
+        self.list = list
         collectionView.reloadData()
     }
 
@@ -36,14 +36,13 @@ class DailyForecastRow: UITableViewCell {
 
 extension DailyForecastRow: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return list.count > 0 ? 8 : list.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DailyForecastCell.id, for: indexPath) as! DailyForecastCell
-        if let item = weatherData?.list[indexPath.item] {
-            cell.configure(item)
-        }
+        let item = list[indexPath.item]
+        cell.configure(item)
         return cell
     }
 }

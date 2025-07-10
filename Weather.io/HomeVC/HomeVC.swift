@@ -71,6 +71,7 @@ extension HomeVC: UITableViewDataSource{
         }
         else if (id == WeeklyForecastRow.id){
             let cell = tableView.dequeueReusableCell(withIdentifier: WeeklyForecastRow.id, for: indexPath) as! WeeklyForecastRow
+            cell.configure(weeklyWeather)
             return cell
         } else {
             return UITableViewCell()
